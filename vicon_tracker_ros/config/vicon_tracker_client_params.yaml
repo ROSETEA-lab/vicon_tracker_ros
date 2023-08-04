@@ -1,0 +1,18 @@
+# vicon_tracker_client node configuration parameters
+/vicon_tracker_client:
+  ros__parameters:
+    server_address: "10.130.64.25"           # Address of the vicon server
+
+    object-1:
+      object_name: "Palla"                   # Name of the object in Vicon Tracker
+      pose_topic: "/palla/pose"              # Topic to publish 3D pose
+      pose2d_topic: "/palla/ground_pose"     # Topic to publish 2D pose
+      child_frame_id: "palla/base_link"
+      parent_frame_id: "world"
+      
+    object-2:
+      object_name: "spalla"                  # Name of the object in Vicon Tracker
+      pose_topic: "/spalla/pose"             # Topic to publish 3D pose
+      pose2d_topic: "/spalla/ground_pose"    # Topic to publish 2D pose
+      child_frame_id: "spalla/base_link"
+      parent_frame_id: "world"
