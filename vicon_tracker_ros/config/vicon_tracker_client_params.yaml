@@ -4,14 +4,14 @@
     server_address: "10.130.64.25"           # Address of the vicon server
 
     object-1:
-      object_name: "UGV1"                   # Name of the object in Vicon Tracker
+      object_name: "UGV1"                    # Name of the object in Vicon Tracker
       pose_topic: "/ugv1/pose"               # Topic to publish 3D pose
       pose2d_topic: "/ugv1/ground_pose"      # Topic to publish 2D pose
       child_frame_id: "ugv1/base_link"       # Child frame for TF data
       parent_frame_id: "world"               # Parent frame for TF data
       
     object-2:
-      object_name: "UGV2"                  # Name of the object in Vicon Tracker
+      object_name: "UGV2"                   # Name of the object in Vicon Tracker
       pose_topic: "/ugv2/pose"              # Topic to publish 3D pose
       pose2d_topic: "/ugv2/ground_pose"     # Topic to publish 2D pose
       child_frame_id: "ugv2/base_link"      # Child frame for TF data
