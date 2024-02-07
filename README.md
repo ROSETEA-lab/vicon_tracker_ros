@@ -14,13 +14,13 @@ In order to use **vicon_tracker_ros** Datastream SDK libraries must be installed
 This package is shipped with some script files, included in the vicon_sdk folder, that allows to easily install/uninstall the required Datastream SDK libraries.
 To use the scripts, enter the vicon_sdk folder and
 ```
-$ ./sdk_libs -i name_of_sdk_file.zip
+$ ./sdk_libs_x.xx.sh -i name_of_sdk_file.zip
 ```
 to install the libraries, or
 ```
-$ ./sdk_libs -u
+$ ./sdk_libs_x.xx.sh -u
 ```
-to uninstall the libraries.
+to uninstall the libraries (where x.xx is the version of the SDK you would like to install/uninstall).
 
 ## Quick start
 
