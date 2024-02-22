@@ -38,7 +38,7 @@ int main(int argc, char * argv[])
 
     std::string server_address;
     if (false == pNode->get_parameter(parameter_name, server_address))
-        RCLCPP_INFO(pNode->get_logger(), "Node %s: unable to retrieve parameter %s.", pNode->get_name(), parameter_name.c_str());
+        RCLCPP_ERROR(pNode->get_logger(), "Node %s: unable to retrieve parameter %s.", pNode->get_name(), parameter_name.c_str());
 
     // Retrieve object parameters from ROS parameter server
     std::map<std::string, object_data_struct> object_configuration;
@@ -72,7 +72,6 @@ int main(int argc, char * argv[])
 
     // Create a TF2 broadcaster
     std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster = std::make_unique<tf2_ros::TransformBroadcaster>(*pNode);
-
 
     RCLCPP_INFO(pNode->get_logger(), "Node %s ready to run.", pNode->get_name());
 
@@ -172,7 +171,7 @@ int main(int argc, char * argv[])
     }
     else
     {
-        RCLCPP_ERROR(pNode->get_logger(), "Streaming mode set to server push");
+        RCLCPP_INFO(pNode->get_logger(), "Streaming mode set to server push");
     }
 
     // Check axis mapping
@@ -231,6 +230,7 @@ int main(int argc, char * argv[])
             else if (objectTranslation_output.Occluded)
             {
                 validObjectPose = false;
+                RCLCPP_ERROR(pNode->get_logger(), "Error: object occluded, cannot get the translation of object %s from the current frame", objectName.c_str());
             }
             else
             {
@@ -246,11 +246,12 @@ int main(int argc, char * argv[])
             if (objectRotationQuat_output.Result != ViconDataStreamSDK::CPP::Result::Success)
             {
                 validObjectPose = false;
-                RCLCPP_ERROR(pNode->get_logger(), "Error: cannot get the rotation of object %s from the current frame", objectName.c_str());
+                RCLCPP_ERROR(pNode->get_logger(), "Error: cannot get the rotation (quaternion) of object %s from the current frame", objectName.c_str());
             }
             else if (objectRotationQuat_output.Occluded)
             {
                 validObjectPose = false;
+                RCLCPP_ERROR(pNode->get_logger(), "Error: object occluded, cannot get the rotation (quaternion) of object %s from the current frame", objectName.c_str());
             }
             else
             {
@@ -267,11 +268,12 @@ int main(int argc, char * argv[])
             if (objectRotationEul_output.Result != ViconDataStreamSDK::CPP::Result::Success)
             {
                 validObjectPose = false;
-                RCLCPP_ERROR(pNode->get_logger(), "Error: cannot get the rotation of object %s from the current frame", objectName.c_str());
+                RCLCPP_ERROR(pNode->get_logger(), "Error: cannot get the rotation (EulerXYZ) of object %s from the current frame", objectName.c_str());
             }
             else if (objectRotationEul_output.Occluded)
             {
                 validObjectPose = false;
+                RCLCPP_ERROR(pNode->get_logger(), "Error: object occluded, cannot get the rotation (EulerXYZ) of object %s from the current frame", objectName.c_str());
             }
             else
             {
